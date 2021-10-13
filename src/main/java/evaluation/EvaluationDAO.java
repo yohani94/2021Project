@@ -27,7 +27,7 @@ public class EvaluationDAO {
 	// 강의평가 글쓰기 함수
 	public int write(EvaluationDTO evaluationDTO) {
 		PreparedStatement pstmt = null;
-		try {
+		try { // evaluationID값이 auto_increment로 적용되어있기 때문에 NULL값을 넣어주면 차례대로 1씩 증가되며 기입이됨, likeCount는 기본적으로(처음에) 좋아요 개수가 없기 때문에 0을 넣어줌
 			String SQL = "INSERT INTO EVALUATION VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
 			pstmt = conn.prepareStatement(SQL);//.replaceAll("1", "2")는 아스키문자 1을 HTML 참조문자 2로 치환하여 브라우저에서는 일반 문자로 인식하여 스크립트로 해석되어 실행되지 않는다.
 			pstmt.setString(1, evaluationDTO.getUserID().replaceAll("<", "&lt;").replaceAll(">", " &gt;").replaceAll("\r\n", "<br>"));// 유저아이디
@@ -152,7 +152,7 @@ public class EvaluationDAO {
 		}
 		return -1;
 	}
-
+	// 특정한 강의평가를 작성한 사용자 아이디를 구하는 함수
 	public String getUserID(String evaluationID) {
 		PreparedStatement pstmt = null;
 		try {

@@ -4,9 +4,9 @@
 <%@ page import="likey.LikeyDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 
-<%!
+<%! //해당 셀트에 접속한 사용자의 아이피주소를 알아내주는 함수
 	public static String getClientIP(HttpServletRequest request) {
-	    String ip = request.getHeader("X-FORWARDED-FOR"); 
+	    String ip = request.getHeader("X-FORWARDED-FOR");// 프록시 서버를 사용한 클라이언트도 IP를 가져올수 있도록 코딩
 	    if (ip == null || ip.length() == 0) {
 	        ip = request.getHeader("Proxy-Client-IP");
 	    }

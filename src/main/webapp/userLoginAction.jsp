@@ -14,28 +14,28 @@
 	}
 	UserDAO userDAO = new UserDAO();
 	int result = userDAO.login(userID, userPassword);
-	if (result == 1) {
+	if (result == 1) { //DAO에서 설정해준 번호들, 1은 로그인 완료 시
 		session.setAttribute("userID", userID);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("location.href='index.jsp'");
 		script.println("</script>");
 		script.close();
-	} else if (result == 0) {
+	} else if (result == 0) { // 비밀번호가 틀렸을 때
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다.');");
 		script.println("history.back();");
 		script.println("</script>");
 		script.close();
-	} else if (result == -1) {
+	} else if (result == -1) { // 아이디가 없을 때
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('존재하지 않는 아이디입니다.');");
 		script.println("history.back();");
 		script.println("</script>");
 		script.close();
-	} else if (result == -2) {
+	} else if (result == -2) { // 데이터베이스 오류
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('데이터베이스 오류가 발생했습니다.');");

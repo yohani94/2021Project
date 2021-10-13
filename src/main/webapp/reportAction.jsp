@@ -40,13 +40,13 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('입력이 안 된 사항이 있습니다.');");
-		script.println("history.back();"); // 이전화면으로 보내줌
+		script.println("history.back();"); // 이전화면으로 보내줌.
 		script.println("</script>");
 		script.close();
 		return;
 	}
 	
-	// 사용자에게 보낼 메시지를 기입합니다.
+	// 사용자에게 보낼 메시지를 기입함.
 	String host = "http://localhost:8080/Lecture_Evaluation/";
 	String from = "Korea.lyh94";
 	String to = "Korea.lyh94@gmail.com";
@@ -56,12 +56,12 @@
 					 "<br>내용: " + reportContent;
 
 
-	// SMTP에 접속하기 위한 정보를 기입합니다.
+	// SMTP에 접속하기 위한 정보를 기입함.
 	Properties p = new Properties();
 	p.put("mail.smtp.user", from);
 	p.put("mail.smtp.host", "smtp.gmail.com");
 	p.put("mail.smtp.port", "465");
-	p.put("mail.smtp.ssl.enable", "true"); 
+	p.put("mail.smtp.ssl.enable", "true");
 	p.put("mail.smtp.ssl.protocols", "TLSv1.2");
 	p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 	p.put("mail.smtp.auth", "true");
@@ -70,7 +70,7 @@
 	    Authenticator auth = new Gmail();
 	    Session ses = Session.getInstance(p, auth);
 	    ses.setDebug(true);
-	    MimeMessage msg = new MimeMessage(ses); 
+	    MimeMessage msg = new MimeMessage(ses);
 	    msg.setSubject(subject);
 	    Address fromAddr = new InternetAddress(from);
 	    msg.setFrom(fromAddr);
@@ -86,7 +86,7 @@
 		script.println("alert('오류가 발생했습니다.');");
 		script.println("history.back();");
 		script.println("</script>");
-		script.close();		
+		script.close();
 	    return;
 	}
 
@@ -96,6 +96,6 @@
 	script.println("alert('정상적으로 신고되었습니다.');");
 	script.println("history.back();");
 	script.println("</script>");
-	script.close();		
+	script.close();
     return;
 %>

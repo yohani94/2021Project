@@ -61,13 +61,13 @@
 	    Session ses = Session.getInstance(p, auth);
 	    ses.setDebug(true);
 	    MimeMessage msg = new MimeMessage(ses); 
-	    msg.setSubject(subject);
+	    msg.setSubject(subject);//보내는 사람정보 넣기
 	    Address fromAddr = new InternetAddress(from);
-	    msg.setFrom(fromAddr);
+	    msg.setFrom(fromAddr);// 받는사람정보 넣기
 	    Address toAddr = new InternetAddress(to);
-	    msg.addRecipient(Message.RecipientType.TO, toAddr);
+	    msg.addRecipient(Message.RecipientType.TO, toAddr);// 받는사람 주소
 	    msg.setContent(content, "text/html;charset=UTF-8");
-	    Transport.send(msg);
+	    Transport.send(msg);//실제로 메시지 전송
 	} catch(Exception e){
 	    e.printStackTrace();
 		PrintWriter script = response.getWriter();

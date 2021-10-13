@@ -3,7 +3,7 @@
 <%@ page import="java.io.PrintWriter"%>
 
 <%
-	session.invalidate();
+	session.invalidate(); // invalidate 함수는 세션을 없애고 세션에 속해있는 값들을 모두 없앤다
 %>
 
 <script>

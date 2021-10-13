@@ -24,6 +24,7 @@
 	}
 	
 	String userEmail = userDAO.getUserEmail(userID);
+	//해쉬값을 적용한 값이 사용자의 코드값과 일치하는지 맞으면 트루 아니면 펄스
 	boolean rightCode = (new SHA256().getSHA256(userEmail).equals(code)) ? true : false;
 	if(rightCode == true) {
 		userDAO.setUserEmailChecked(userID);

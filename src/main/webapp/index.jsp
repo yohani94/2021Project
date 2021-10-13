@@ -23,11 +23,14 @@
 
   <body>
 <%
+	// 게시글 검색
 	request.setCharacterEncoding("UTF-8");
+	
 	String lectureDivide = "전체";
 	String searchType = "최신순";
 	String search = "";
 	int pageNumber = 0;
+	
 	if(request.getParameter("lectureDivide") != null) {
 		lectureDivide = request.getParameter("lectureDivide");
 	}
@@ -39,11 +42,14 @@
 	}
 	if(request.getParameter("pageNumber") != null) {
 		try {
+			// 페이지이므로 정수형으로 만듬
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		} catch (Exception e) {
 			System.out.println("검색 페이지 번호 오류");
 		}
 	}
+	
+	// 로그인
 	String userID = null;
 	if(session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
@@ -87,12 +93,12 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdown">
 <%
-	if(userID == null) {
+	if(userID == null) { // 로그인 안한상태 일때 로그인/회원가입 메뉴항목 출력부분
 %>
               <a class="dropdown-item" href="userLogin.jsp">로그인</a>
               <a class="dropdown-item" href="userRegister.jsp">회원가입</a>
 <%
-	} else {
+	} else { // 로그인 한 상태일 때 로그아웃 메뉴항목 출력부분
 %>
               <a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 <%
@@ -170,7 +176,8 @@
         <a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal">등록하기</a>
         <a class="btn btn-danger ml-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
       </form>
-<%
+      
+<%	//검색을 한 내용을 토대로 강의평가 게시글들을 출력
 	ArrayList<EvaluationDTO> evaluationList = new ArrayList<EvaluationDTO>();
 	evaluationList = new EvaluationDAO().getList(lectureDivide, searchType, search, pageNumber);
 	if(evaluationList != null)
@@ -218,7 +225,7 @@
       <li class="page-item">
 <%
 	if(pageNumber <= 0) {
-%>     
+%>
         <a class="page-link disabled">이전</a>
 <%
 	} else {
